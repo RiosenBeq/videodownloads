@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Clipkeeper test page</title>
+    <style>
+      body { font: 14px system-ui; margin: 24px; background: #111; color: #ddd; }
+      video, iframe { width: 320px; height: 180px; background: #000; margin: 6px; border: 0; }
+    </style>
+  </head>
+  <body>
+    <h1>Local sample videos</h1>
+    <!-- 1. Plain <video src> -->
+    <video id="direct" src="/sample.mp4" title="Direct MP4 sample" controls muted></video>
+
+    <!-- 2. Several <source> elements -->
+    <figure>
+      <video id="multi" controls muted>
+        <source src="/sample.webm" type="video/webm" label="360p" />
+        <source src="/sample.mp4?variant=720" type="video/mp4" size="720" />
+      </video>
+      <figcaption>Multi-source clip</figcaption>
+    </figure>
+
+    <!-- 3. Accessible iframe -->
+    <iframe src="/e2e/frame.html" title="Embedded player"></iframe>
+
+    <!-- 4. Link to a file -->
+    <p><a href="/large.mp4">Download the large sample</a></p>
+
+    <div id="late"></div>
+    <video id="mse" title="MSE player" muted></video>
+
+    <script src="/e2e/page.js"></script>
+  </body>
+</html>

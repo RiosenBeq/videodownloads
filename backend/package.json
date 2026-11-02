@@ -1,0 +1,26 @@
+{
+  "name": "@clipkeeper/backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Clipkeeper local helper: authenticated localhost API for HLS/DASH/direct downloads",
+  "type": "module",
+  "bin": {
+    "clipkeeper-helper": "bin/clipkeeper-helper.mjs"
+  },
+  "scripts": {
+    "start": "tsx src/cli.ts start",
+    "dev": "tsx watch src/cli.ts start",
+    "token": "tsx src/cli.ts token",
+    "rotate-token": "tsx src/cli.ts rotate-token",
+    "doctor": "tsx src/cli.ts doctor",
+    "test": "vitest run",
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@clipkeeper/shared": "*",
+    "fastify": "5.12.8",
+    "tsx": "4.23.15",
+    "zod": "4.6.7"
+  },
+  "license": "MIT"
+}

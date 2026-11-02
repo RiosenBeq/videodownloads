@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": ["node", "chrome"],
+    "allowJs": true,
+    "checkJs": false
+  },
+  "include": ["integration", "helpers", "e2e/run.ts"]
+}

@@ -1,0 +1,17 @@
+node_modules/
+dist/
+coverage/
+*.log
+.DS_Store
+tests/.fixtures/
+tests/e2e/.artifacts/
+*.tsbuildinfo
+
+# Downloaded media must never be committed (e.g. if a download folder points here)
+.clipkeeper-partial/
+/*.mp4
+/*.m4v
+/*.webm
+/*.mkv
+/*.mov
+/*.m4a

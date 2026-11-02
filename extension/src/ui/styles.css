@@ -1,0 +1,191 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Semantic color tokens; utilities below map to these so one class works in both themes. */
+:root {
+  --canvas: #f5f5f7;
+  --canvas-glow: rgba(110, 99, 246, 0.07);
+  --panel: #ffffff;
+  --panel-2: #f0f0f3;
+  --panel-hover: #f7f7f9;
+  --line: rgba(15, 15, 30, 0.08);
+  --line-strong: rgba(15, 15, 30, 0.14);
+  --ink: #16161d;
+  --ink-muted: #5e5e6b;
+  --ink-faint: #9494a0;
+  --accent: #6d5ef6;
+  --accent-ink: #5847e8;
+  --accent-soft: rgba(109, 94, 246, 0.1);
+  --success: #1f9d5a;
+  --success-soft: rgba(31, 157, 90, 0.1);
+  --warning: #b8740b;
+  --warning-soft: rgba(214, 140, 18, 0.12);
+  --danger: #d93a3a;
+  --danger-soft: rgba(217, 58, 58, 0.1);
+  --info: #2f6fe4;
+  --info-soft: rgba(47, 111, 228, 0.1);
+  --shadow: 0 1px 2px rgba(15, 15, 30, 0.04), 0 4px 16px rgba(15, 15, 30, 0.04);
+  color-scheme: light;
+}
+
+.dark {
+  --canvas: #0d0d12;
+  --canvas-glow: rgba(120, 104, 255, 0.12);
+  --panel: rgba(255, 255, 255, 0.035);
+  --panel-2: rgba(255, 255, 255, 0.06);
+  --panel-hover: rgba(255, 255, 255, 0.055);
+  --line: rgba(255, 255, 255, 0.075);
+  --line-strong: rgba(255, 255, 255, 0.13);
+  --ink: #ececf2;
+  --ink-muted: #9d9daa;
+  --ink-faint: #6b6b78;
+  --accent: #8b7dff;
+  --accent-ink: #a79dff;
+  --accent-soft: rgba(139, 125, 255, 0.14);
+  --success: #3ecf86;
+  --success-soft: rgba(62, 207, 134, 0.12);
+  --warning: #f0b450;
+  --warning-soft: rgba(240, 180, 80, 0.12);
+  --danger: #ff6b6b;
+  --danger-soft: rgba(255, 107, 107, 0.12);
+  --info: #6aa5ff;
+  --info-soft: rgba(106, 165, 255, 0.12);
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 8px 24px rgba(0, 0, 0, 0.25);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+  --color-canvas: var(--canvas);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-panel-hover: var(--panel-hover);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --shadow-card: var(--shadow);
+}
+
+html,
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+body {
+  margin: 0;
+  background-image: radial-gradient(120% 60% at 50% -10%, var(--canvas-glow), transparent 70%);
+  background-attachment: fixed;
+}
+
+body.popup {
+  width: 400px;
+  min-width: 340px;
+  height: 580px;
+  overflow: hidden;
+}
+
+/* Popup also opens as a regular page (tests, "open in tab") — keep it fluid there. */
+@media (min-width: 520px) {
+  body.popup.standalone {
+    width: 100%;
+    height: 100vh;
+  }
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+.scroll-area {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+.gradient-accent {
+  background-image: linear-gradient(135deg, #5b8cff 0%, #7a67fb 55%, #9b5cf6 100%);
+}
+
+.gradient-text {
+  background-image: linear-gradient(135deg, #5b8cff, #9b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(250%);
+  }
+}
+
+.progress-indeterminate::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  border-radius: inherit;
+  background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-in {
+  animation: fade-in 180ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-in,
+  .progress-indeterminate::after {
+    animation: none;
+  }
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239494a0' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  appearance: none;
+}
+
+select option {
+  background: var(--canvas);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

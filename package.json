@@ -1,0 +1,43 @@
+{
+  "name": "clipkeeper",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chrome video downloader: MV3 extension + local helper service",
+  "type": "module",
+  "workspaces": [
+    "shared",
+    "backend",
+    "extension"
+  ],
+  "scripts": {
+    "build": "npm run build -w @clipkeeper/extension",
+    "start:backend": "npm start -w @clipkeeper/backend --",
+    "dev:backend": "npm run dev -w @clipkeeper/backend --",
+    "token": "npm run token -w @clipkeeper/backend",
+    "doctor": "npm run doctor -w @clipkeeper/backend",
+    "typecheck": "tsc -p shared && tsc -p backend && tsc -p extension && tsc -p tests",
+    "test": "vitest run",
+    "test:unit": "vitest run --project shared --project backend --project extension",
+    "test:integration": "vitest run --project integration",
+    "test:e2e": "npm run build && tsx tests/e2e/run.ts",
+    "fixtures": "node scripts/make-fixtures.mjs",
+    "demo": "npm run build && tsx scripts/demo.ts"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "playwright": "^1.64.1",
+    "typescript": "5.9.3",
+    "vitest": "4.1.12"
+  },
+  "engines": {
+    "node": ">=20.10"
+  },
+  "overrides": {
+    "light-my-request": "6.6.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RiosenBeq/videodownloads.git"
+  }
+}
